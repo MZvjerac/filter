@@ -1,0 +1,11 @@
+.container {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    padding-top: 25px;
+    padding-bottom: 350px;
+    padding-right: 25px;
+}

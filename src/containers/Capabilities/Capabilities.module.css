@@ -1,0 +1,100 @@
+.container {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 275px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    background-color: white;
+    margin-top: 75px;
+}
+
+.card {
+    opacity: 0.75;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: 0px;
+    width: 350px;
+    background-color: white;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.input {
+    width: 480px;
+    margin-left: 500px;
+    padding-bottom: 25px;
+}
+
+.button {
+    width: 100%;
+    height: 38px;
+    background-color: rgba(10, 37, 98, 0.897);
+    border-radius: 0px;
+    position: absolute;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.inputAppend {
+    height: 38px;
+    margin-top: 7px;
+}
+
+.span {
+    position: absolute;
+    display: inline-block;
+    height: 38px;
+    width: 38px;
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    background-color: rgba(10, 37, 98, 0.897);
+}
+
+.icon {
+    position: relative;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.buttonBox {
+    padding-left: 5px;
+    opacity: 0.75;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left: 9px;
+    width: 650px;
+    background-color: white;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.inputPrepend {
+    height: 38px;
+    margin-top: 8px;
+    background-color: rgb(43, 185, 138);
+}
+
+.checkBoxes {
+    margin-left: 15px;
+}
+
+.hr {
+    margin-top: -3.5px;
+    margin-left: 320px;
+    margin-right: 320px;
+    position: relative;
+    border: none;
+    height: 12px;
+    background: black;
+}
+
+@media only screen and (max-width: 1399px) {
+    .input {
+        margin-left: 15px;
+        margin-right: 15px;
+        width: auto;
+    }
+}

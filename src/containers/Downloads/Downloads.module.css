@@ -1,0 +1,21 @@
+.downloader {
+    width: 500px;
+    min-height: 128px;
+    position: relative;
+    margin-top: 75px;
+    right: 18px;
+    bottom: 18px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.downloader .card_header {
+    color: #fff;
+    background-color: rgba(10, 37, 98, 0.897);
+}
+
+.downloader .card .list-group {
+    max-height: 300px;
+    overflow: hidden;
+    overflow-y: auto;
+}
