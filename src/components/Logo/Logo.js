@@ -4,7 +4,7 @@ import classes from './Logo.module.css';
 
 const logo = (props) => (
     <div className={classes.Logo} style={{height: props.height}}>
-        <img src={aircraftKnowledgeLogo} alt="daes-Logo" />
+        <a href="https://www.daesgroup.com/"><img src={aircraftKnowledgeLogo} alt="daes-Logo" /></a>
     </div>
 );
 

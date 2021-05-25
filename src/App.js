@@ -3,12 +3,10 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import Layout from './hoc/Layout/Layout';
-import Home from './containers/Home/Home';
-import FileDownloader from './containers/Downloads/FileDownloader';
-
+// import FileDownloader from './containers/Downloads/FileDownloader';
 import {AuthContext} from './context/auth-context';
-
 import Capabilities from './containers/Capabilities/Capabilities';
+import Contact from './components/Contact/Contact';
 
 function App() {
 
@@ -21,15 +19,14 @@ function App() {
   }, [authCheckState]);
 
   let routes = (
-    <Switch>
-      <Route path="/home" component={Home} /> 
-      <Redirect from="/" exact to="/home" />          
-      <Route path="/capabilities" component={Capabilities} />
-      <Route path="/downloads" component={FileDownloader} />
+    <Switch>      
+      <Redirect from="/" exact to="/capabilities" />
+      <Route path="/capabilities" component={Capabilities} />           
+      <Contact/>      
+      {/* <Route path="/downloads" component={FileDownloader} /> */}
+      
     </Switch>
-  ); 
-
-  
+  );   
   
   return (    
     <div className="App">    

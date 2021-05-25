@@ -1,8 +1,10 @@
 import React from 'react';
 import classes from './FilteredTable.module.css';
+import { v4 as uuid_v4 } from "uuid";
 
 const FilterdTable = ({data}) => {       
-            
+      
+    
     return(
         <table className={classes.table} >
             <thead className={classes.header}>
@@ -17,19 +19,25 @@ const FilterdTable = ({data}) => {
             </thead>    
             { 
             (data && data.length !== 0) ?
-                data.map((d, index) => (
+                data.map((d) => (
                 <tbody>
                                
-                    <tr key={index} className={classes.row}>
-                        <th className={classes.th}>{d.Part_Number}</th>
-                        <th className={classes.th}>{d.Parent_Part_Numbers}</th>
-                        <th className={classes.th}>{d.ATA_Chapter}</th>
-                        <th className={classes.th}>{d.Eligibility}</th>
-                        <th className={classes.th}>{d.Nomenclature}</th>
-                        <th className={classes.th}>{d.Repair_Description}</th>                        
+                    <tr key={uuid_v4()} className={classes.row}>
+                        <th className={classes.th1}>{d.Part_Number}</th>
+                        <th className={classes.th2}>{d.Parent_Part_Numbers}</th>
+                        <th className={classes.th3}>{d.ATA_Chapter}</th>
+                        <th className={classes.th4}>{d.Eligibility}</th>
+                        <th className={classes.th5}>{d.Nomenclature}</th>
+                        <th className={classes.th6}>{d.Repair_Description}</th>                        
                     </tr> 
                 </tbody>             
-                )) : <th colSpan={6} className={classes.th} >Sorry, no matches found. Do send us an email to check viability of your part number for Epoly repair.</th>
+                )) : 
+                <tbody>
+                    <tr>
+                        <th colSpan={6} className={classes.footer} >Sorry, no matches found. Do send us an email to check viability of your part number for Epoly repair.</th>
+                    </tr>
+                </tbody>
+                
              
                  
            

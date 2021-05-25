@@ -1,9 +1,51 @@
-.card {
-    width: 320px;
-    margin-left: 25px;
-    opacity: 0.75;
+.contactLink {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
 }
 
-.p {
-    margin-top: 2px;
+.contactLink a {
+    color: red;
+    text-decoration: none;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+
+.contactLink a:hover,
+.contactLink a:active,
+.contactLink a.active {
+    /* color: #40A4C8; */
+    color: rgb(0, 112, 192);
+    /* border-right: 12px solid rgb(252, 242, 34); */
+    border-right: 12px solid rgb(0, 112, 192);
+}
+
+@media (min-width: 600px) {
+    .contactLink {
+        margin: 0;
+        display: flex;
+        height: 100%;
+        width: auto;
+        align-items: center;
+    }
+    .contactLink a {
+        color: white;
+        /* color: rgb(252, 242, 34); */
+        height: 100%;
+        padding: 16px 10px;
+        border-bottom: 4px solid transparent;
+    }
+    .contactLink a:hover,
+    .contactLink a:active,
+    .contactLink a.active {
+        /* background-color: #8F5C2C; */
+        background-color: rgb(48, 176, 199);
+        /* border-bottom: 4px solid #40A4C8; */
+        border-bottom: 4px solid rgb(0, 112, 192);
+        border-right: none;
+        /* color: white; */
+        /* color: rgb(252, 242, 34); */
+        color: #e3f2fd;
+    }
 }

@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import ButtonBordered from '../../components/UI/ButtonBordered/ButtonBordered';
 import FilteredTable from '../../components/SearchElement/FilteredTable';
 import * as XLSX from 'xlsx';
+import FileDownloader from '../Downloads/FileDownloader';
+import Tips from '../../components/Tips/Tips';
+
 
 const  Capabilities = (props) => {
 
@@ -16,8 +17,7 @@ const  Capabilities = (props) => {
     // Excel dokument
     const[excel, setExcel]=useState({});  
     const[searchColumns, setSearchColumns] = useState(['']);
-
-        
+            
     useEffect(()=>{        
         fetch("Epoly.xlsx").then(res => res.arrayBuffer()).then(ab => {
             const wb = XLSX.read(ab, { type: "array" });               
@@ -35,8 +35,11 @@ const  Capabilities = (props) => {
     const resetSearchHandler = () => {
         setQuery(""); 
         setSearchColumns(['']);        
-    };    
+    };  
+    
+    const columns = excel[0] && Object.keys(excel[0]);
 
+    
     const queryInputConfig = {
         type:'text',
         placeholder:'Enter Search Term'
@@ -55,90 +58,223 @@ const  Capabilities = (props) => {
                 row[column] ?
                 row[column].toString().toLowerCase().indexOf(query.toLowerCase()) > -1 : null)
         );
-    }  
+    }     
     
-    const columns = excel[0] && Object.keys(excel[0]);
-
     if(query!="")
-    {   
-    return (
-        <div className={classes.container}>                                   
+    {       
+        if(searchColumns!="" )
+        {
+            return (
+                <div className={classes.container}>                                   
+                    <div className="row">
+                        <div className={classes.col1}>
+                            <div className={classes.card1}>
+                                <FileDownloader />
+                            </div>                        
+                        </div>
+                        <div className={classes.col2}>
+                            <div className={classes.card2}>
+                                <label><b>Search by:</b></label>  
+                            </div>
+                            <div className={classes.card3}>
+                                <table className="table"  >
+                                    <tbody>                           
+                                    {
+                                        columns && columns.map((column, index) =>
+                                            <tr key={index} className={classes.rowSearch} > 
+                                                <td >
+                                                <div className={classes.checkBoxes}>
+                                                    <input type="checkbox" 
+                                                        checked={searchColumns.includes(column)} 
+                                                        onChange={(e) => {
+                                                        const checked = searchColumns.includes(column);
+                                                        setSearchColumns((prev) => checked
+                                                        ? prev.filter((src) => src !== column)
+                                                        : [...prev, column]);
+                                                            }}      
+                                                    />                                           
+                                                    
+                                                    {column}
+                                                </div>                                          
+                                                </td>
+                                            </tr>
+                                        )
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>      
+                            <Tips/>     
+                        </div>
+                        <div className={classes.col3}>
+                            <div className={classes.card4}>
+                                <InputGroup className={classes.input}>
+                                    <InputGroup.Prepend className={classes.inputPrepend}>
+                                        <InputGroup.Text className={classes.span}>
+                                            <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
+                                        </InputGroup.Text>                                
+                                    </InputGroup.Prepend>                   
+                                <Input
+                                    value={query}
+                                    changed={(e)=>setQuery(e.target.value)}                                                                             
+                                    elementType='input' 
+                                    elementConfig= {queryInputConfig}
+                                />
+                                
+                                </InputGroup>
+                            </div>                        
+                        </div>
+                                        
+                    </div>
+                    <div className={classes.row2}> 
+                        <div className={classes.col4}>
+                            {                               
+                                <Button onClick={resetSearchHandler} className={classes.buttonReset}>RESET</Button>                         
+                            }
+                        </div>                                                
+                    </div>
+                    <div className={classes.row3}>                        
+                        <div className={classes.col5}> 
+                            {                               
+                                <FilteredTable data={search(excel)} />                           
+                            }                    
+                        </div>
+                    </div>                                           
+                </div>        );
+        }
+        else{           
+                return (
+                    <div className={classes.container}>                                   
+                        <div className="row">
+                            <div className={classes.col1}>
+                                <div className={classes.card1}>
+                                    <FileDownloader />
+                                </div>                        
+                            </div>
+                            <div className={classes.col2}>
+                                <div className={classes.card2}>
+                                <label><b>Search by: </b></label>                                      
+                                </div>
+                                <div className={classes.card3}>
+                                    <table className="table"  >
+                                        <tbody>
+                                            {
+                                                columns && columns.map((column, index) => 
+                                                <tr key={index} className={classes.rowSearch} >
+                                                    <td >
+                                                    <div className={classes.checkBoxes}>
+                                                        <input type="checkbox" 
+                                                            checked={searchColumns.includes(column)} 
+                                                            onChange={(e) => {
+                                                            const checked = searchColumns.includes(column);
+                                                            setSearchColumns((prev) => checked
+                                                            ? prev.filter((src) => src !== column)
+                                                            : [...prev, column]);
+                                                                }} 
                     
-                    <InputGroup className={classes.input}>
-                            <InputGroup.Prepend className={classes.inputPrepend}>
-                                <InputGroup.Text className={classes.span}>
-                                    <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
-                                </InputGroup.Text>                                
-                            </InputGroup.Prepend>                   
-                            <Input
-                                value={query}
-                                changed={(e)=>setQuery(e.target.value)}                                                                             
-                                elementType='input' 
-                                elementConfig= {queryInputConfig}                                               
-                            /><Button onClick={resetSearchHandler} className={classes.button}>RESET</Button>
-                    </InputGroup>
-                    <label><b>Search by:</b></label>   
-                        {
-                            columns && columns.map(column => 
-                                <label className={classes.checkBoxes}>
-                                    <input type="checkbox" 
-                                        checked={searchColumns.includes(column)} 
-                                        onChange={(e) => {
-                                        const checked = searchColumns.includes(column);
-                                        setSearchColumns((prev) => checked
-                                        ? prev.filter((src) => src !== column)
-                                        : [...prev, column]);
-                                            }} 
-
+                                                        />                                                       
+                                                        {column}
+                                                        <hr className={classes.hr}></hr>
+                                                    </div>  
+                                                    </td>
+                                                </tr>
+                                                )
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>      
+                                <Tips/>      
+                            </div>
+                            <div className={classes.col3}>                            
+                                <div className={classes.card4}>
+                                
+                                    <InputGroup className={classes.input}>
+                                        <InputGroup.Prepend className={classes.inputPrepend}>
+                                            <InputGroup.Text className={classes.span}>
+                                                <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
+                                            </InputGroup.Text>                                
+                                        </InputGroup.Prepend>                   
+                                        <Input
+                                            value={query}
+                                            changed={(e)=>setQuery(e.target.value)}                                                                             
+                                            elementType='input' 
+                                            elementConfig= {queryInputConfig}                                               
                                     />
-                                    {column}
-                                </label>)
-                        }
-                        <hr className={classes.hr}></hr>                     
-                    <div> 
-                        {
-                            <FilteredTable data={search(excel)}/> 
-                        }                    
-                    </div>      
-        </div> );
+                                    <label className={classes.warning}>Please select Search by type (Part Number, Parent Part Numbers, ATA Chapter, Eligibility, Nomenclature or Repair Description) to continue with search.</label>
+                                    
+                                    </InputGroup>
+                                   
+                                </div> 
+                                                       
+                            </div>
+                                                
+                        </div>                                           
+                    </div> 
+                );           
+        }                   
     }
     else{
         return (
             <div className={classes.container}>                                   
+                <div className="row">
+                    <div className={classes.col1}>
+                        <div className={classes.card1}>
+                            <FileDownloader />
+                        </div>                        
+                    </div>
+                    <div className={classes.col2}>
+                        <div className={classes.card2}>
+                            <label className={classes.label}><b>Search by:</b></label>  
+                        </div>         
+
+                        <div className={classes.card3}>
                         
-                        <InputGroup className={classes.input}>
-                            <InputGroup.Prepend className={classes.inputPrepend}>
-                                <InputGroup.Text className={classes.span}>
-                                    <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
-                                </InputGroup.Text>                                
-                            </InputGroup.Prepend>                   
-                            <Input
-                                value={query}
-                                changed={(e)=>setQuery(e.target.value)}                                                                             
-                                elementType='input' 
-                                elementConfig= {queryInputConfig}                                               
-                            /><Button onClick={resetSearchHandler} className={classes.button}>RESET</Button>
-                        </InputGroup>
-                        
-                        <label><b>Search by:</b></label>    
-                            {
-                                columns && columns.map(column => 
-                                    <label className={classes.checkBoxes}>
-                                        <input type="checkbox" 
-                                            checked={searchColumns.includes(column)} 
-                                            onChange={(e) => {
-                                            const checked = searchColumns.includes(column);
-                                            setSearchColumns((prev) => checked
-                                            ? prev.filter((src) => src !== column)
-                                            : [...prev, column]);
-                                                }} 
-    
-                                        />
-                                        {column}
-                                        
-                                    </label>)
-                            }   
-                        <hr className={classes.hr}></hr>                          
+                            <table className="table"  >
+                                <tbody>                                                            
+                                {
+                                    columns && columns.map((column, index) =>                                 
+                                    <tr key={index} className={classes.rowSearch} >
+                                        <td >
+                                        <div className={classes.checkBoxes}>
+                                            <input type="checkbox" 
+                                                checked={searchColumns.includes(column)} 
+                                                onChange={(e) => {
+                                                const checked = searchColumns.includes(column);
+                                                setSearchColumns((prev) => checked
+                                                ? prev.filter((src) => src !== column)
+                                                : [...prev, column]);
+                                                    }} 
+        
+                                            />                                                                                
+                                            {column}
+                                            </div>                                        
+                                        </td>
+                                    </tr>                                
+                                    )
+                                }                                
+                                </tbody>
+                            </table>
+                        </div>                       
+                        <Tips/> 
+                    </div>
+                    <div className={classes.col3}>
+                        <div className={classes.card4}>
+                            <InputGroup className={classes.input}>
+                                <InputGroup.Prepend className={classes.inputPrepend}>
+                                    <InputGroup.Text className={classes.span}>
+                                        <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
+                                    </InputGroup.Text>                                
+                                </InputGroup.Prepend>                   
+                                <Input
+                                    value={query}
+                                    changed={(e)=>setQuery(e.target.value)}                                                                             
+                                    elementType='input' 
+                                    elementConfig= {queryInputConfig}                                               
+                            />                            
+                            </InputGroup>
+                        </div>                        
+                    </div>
+                                    
+                </div>                                           
             </div> 
         );
     }

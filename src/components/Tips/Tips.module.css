@@ -1,0 +1,25 @@
+.tipButton {
+    opacity: 0;
+    width: 195px;
+    height: 27px;
+    margin-top: 2px;
+}
+
+.tipButton:hover {
+    cursor: initial;
+}
+
+.tips {
+    height: 200px;
+    text-align: right;
+    margin-left: 5px;
+    width: 219px;
+    margin-top: -202px;
+    margin-right: 45px;
+}
+
+@media only screen and (max-width: 571px) {
+    .tipButton {
+        width: 184px;
+    }
+}

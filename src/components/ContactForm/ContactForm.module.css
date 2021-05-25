@@ -1,0 +1,28 @@
+.blueRibon100 {
+    position: relative;
+    display: inline-block;
+    background-color: #423a6e;
+}
+
+.blueRibon100 .blueRibon {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 1320px;
+    text-align: center;
+}
+
+.contactForm {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    margin-top: 0px;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding: 30px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+}
