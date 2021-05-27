@@ -20,9 +20,10 @@ function App() {
 
   let routes = (
     <Switch>      
-      <Redirect from="/" exact to="/capabilities" />
-      <Route path="/capabilities" component={Capabilities} />           
-      <Contact/>      
+      {/* <Redirect from="/epoly" exact to="/capabilities" /> */}
+      {/* <Route path="/capabilities" component={Capabilities} />    */}
+      <Route path="/epoly" component={Capabilities} />        
+      {/* <Contact/>       */}
       {/* <Route path="/downloads" component={FileDownloader} /> */}
       
     </Switch>

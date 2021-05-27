@@ -5,7 +5,8 @@ import Contact from '../../Contact/Contact';
 
 const navigationItems = ( props ) => (
     <ul className={classes.NavigationItems}>        
-        <NavigationItem link="/capabilities">Capability</NavigationItem>                
+        {/* <NavigationItem link="/capabilities">Capability</NavigationItem> */}    
+        <NavigationItem link="/epoly">Capability</NavigationItem>            
         <Contact/>        
     </ul>
 );

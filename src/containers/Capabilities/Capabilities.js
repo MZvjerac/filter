@@ -9,6 +9,7 @@ import FilteredTable from '../../components/SearchElement/FilteredTable';
 import * as XLSX from 'xlsx';
 import FileDownloader from '../Downloads/FileDownloader';
 import Tips from '../../components/Tips/Tips';
+import epoly from '../../assets/Epoly.xlsx';
 
 
 const  Capabilities = (props) => {
@@ -19,7 +20,8 @@ const  Capabilities = (props) => {
     const[searchColumns, setSearchColumns] = useState(['']);
             
     useEffect(()=>{        
-        fetch("Epoly.xlsx").then(res => res.arrayBuffer()).then(ab => {
+        fetch("/epoly/Epoly.xlsx").then(res => res.arrayBuffer()).then(ab => {
+        /* fetch(epoly).then(res => res.arrayBuffer()).then(ab => { */
             const wb = XLSX.read(ab, { type: "array" });               
                     
             const wsname = wb.SheetNames[0];
@@ -27,9 +29,25 @@ const  Capabilities = (props) => {
             const ws = wb.Sheets[wsname];
         
             const items = XLSX.utils.sheet_to_json(ws);
-            console.log("Items=",items);
+            //console.log("Items=",items);
             setExcel(items);
-        });                         
+        }); 
+        
+        /* var first_worksheet = epoly.Sheets[epoly.SheetNames[0]];
+        var data = XLSX.utils.sheet_to_json(first_worksheet, {header:1});
+        setExcel(data); */
+        
+        /* const ab = epoly.arrayBuffer();
+
+        const wb = XLSX.read(ab, { type: "array" });               
+                    
+        const wsname = wb.SheetNames[0];
+    
+        const ws = wb.Sheets[wsname];
+    
+        const items = XLSX.utils.sheet_to_json(ws);
+        console.log("Items=",items);
+        setExcel(items); */
     }, []);
 
     const resetSearchHandler = () => {
