@@ -7,6 +7,7 @@ import Layout from './hoc/Layout/Layout';
 import {AuthContext} from './context/auth-context';
 import Capabilities from './containers/Capabilities/Capabilities';
 import Contact from './components/Contact/Contact';
+import SpareParts from './containers/SpareParts/SpareParts';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
     <Switch>      
       {/* <Redirect from="/epoly" exact to="/capabilities" /> */}
       {/* <Route path="/capabilities" component={Capabilities} />    */}
-      <Route path="/epoly" component={Capabilities} />        
+      <Route path="/epoly" component={SpareParts} />        
       {/* <Contact/>       */}
       {/* <Route path="/downloads" component={FileDownloader} /> */}
       

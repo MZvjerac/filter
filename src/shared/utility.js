@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-//import classesCss from '../components/UI/Table/CustomDataTableRow/CustomDataTableRow.module.css'
+import classesCss from '../components/UI/Table/CustomDataTableRow/CustomDataTableRow.module.css'
 
 export const updateObject = (oldObject, updatedProperties) => {
     return {
@@ -159,9 +159,9 @@ export const getApiModelPropValue = (rowData, apiModelHeaderColumn) => {
         
         if(apiModelHeaderColumn.linkRoute) {
             dataCellContent = 
-                <Link to={toLinkRoute} >
-                    {dataCellContent}
-                </Link>            
+            <Link to={toLinkRoute} className={classesCss.a}>
+            {dataCellContent}
+        </Link>            
         }
     }
 

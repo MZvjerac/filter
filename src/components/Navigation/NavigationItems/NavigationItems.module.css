@@ -17,13 +17,11 @@
 }
 
 .contactNav a {
-    /* color: #8F5C2C; */
-    /* color: salmon; */
     color: red;
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
-    display: block;
+    display: flexbox;
 }
 
 .contactNav a:hover,
@@ -36,11 +34,12 @@
 }
 
 @media (min-width: 600px) {
-    .contactNav {
+    .contactNav a {
         margin: 0;
         display: flex;
+        flex-flow: column;
         height: 100%;
-        width: auto;
+        /* width: auto; */
         align-items: center;
     }
     .contactNav a {
@@ -64,8 +63,15 @@
     }
 }
 
-@media (min-width: 600px) {
-    .contactNav {
-        flex-flow: row;
+@media (max-width: 600px) {
+    .NavigationItems {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        height: 100%;
+        width: auto;
     }
 }

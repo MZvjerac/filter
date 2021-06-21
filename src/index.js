@@ -5,11 +5,24 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import BreakpointContextProvider from './context/breakpoint-context';
 import {BrowserRouter} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 
 //const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
+import sparePartsReducer from './store/reducers/spareParts';
 
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
+const rootReducer = combineReducers({
+  spareParts: sparePartsReducer
+  
+});
+
+const store = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(thunk)
+));
 
 const queries = {
   xs: '(max-width: 600px)',
@@ -20,12 +33,14 @@ const queries = {
 }
 
 ReactDOM.render(
-  <React.StrictMode>     
+  <React.StrictMode>  
+    <Provider store={store}>   
         <BreakpointContextProvider queries={queries}>
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        </BreakpointContextProvider>   
+        </BreakpointContextProvider> 
+    </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
 );

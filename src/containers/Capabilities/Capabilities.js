@@ -10,6 +10,7 @@ import * as XLSX from 'xlsx';
 import FileDownloader from '../Downloads/FileDownloader';
 import Tips from '../../components/Tips/Tips';
 import epoly from '../../assets/Epoly.xlsx';
+import SpareParts from '../SpareParts/SpareParts';
 
 
 const  Capabilities = (props) => {
@@ -78,19 +79,19 @@ const  Capabilities = (props) => {
         );
     }     
     
-    if(query!="")
-    {       
-        if(searchColumns!="" )
-        {
-            return (
-                <div className={classes.container}>                                   
-                    <div className="row">
-                        <div className={classes.col1}>
-                            <div className={classes.card1}>
-                                <FileDownloader />
-                            </div>                        
-                        </div>
-                        <div className={classes.col2}>
+    // if(query!="")
+    // {       
+    //     if(searchColumns!="" )
+    //     {
+    //         return (
+    //             <div className={classes.container}>                                   
+    //                 <div className="row">
+    //                     <div className={classes.col1}>
+    //                         <div className={classes.card1}>
+    //                             <FileDownloader />
+    //                         </div>                        
+    //                     </div>
+                        {/* <div className={classes.col2}>
                             <div className={classes.card2}>
                                 <label><b>Search by:</b></label>  
                             </div>
@@ -140,26 +141,26 @@ const  Capabilities = (props) => {
                                 
                                 </InputGroup>
                             </div>                        
-                        </div>
+                        </div> */}
                                         
-                    </div>
-                    <div className={classes.row2}> 
-                        <div className={classes.col4}>
-                            {                               
-                                <Button onClick={resetSearchHandler} className={classes.buttonReset}>RESET</Button>                         
-                            }
-                        </div>                                                
-                    </div>
-                    <div className={classes.row3}>                        
-                        <div className={classes.col5}> 
-                            {                               
-                                <FilteredTable data={search(excel)} />                           
-                            }                    
-                        </div>
-                    </div>                                           
-                </div>        );
-        }
-        else{           
+        //             </div>
+        //             <div className={classes.row2}> 
+        //                 <div className={classes.col4}>
+        //                     {                               
+        //                         <Button onClick={resetSearchHandler} className={classes.buttonReset}>RESET</Button>                         
+        //                     }
+        //                 </div>                                                
+        //             </div>
+        //             <div className={classes.row3}>                        
+        //                 <div className={classes.col5}> 
+        //                     {                               
+        //                         <FilteredTable data={search(excel)} />                           
+        //                     }                    
+        //                 </div>
+        //             </div>                                           
+        //         </div>        );
+        // }
+        // else{           
                 return (
                     <div className={classes.container}>                                   
                         <div className="row">
@@ -170,7 +171,8 @@ const  Capabilities = (props) => {
                             </div>
                             <div className={classes.col2}>
                                 <div className={classes.card2}>
-                                <label><b>Search by: </b></label>                                      
+                                
+                                {/* <label><b>Search by: </b></label>                                      
                                 </div>
                                 <div className={classes.card3}>
                                     <table className="table"  >
@@ -198,11 +200,11 @@ const  Capabilities = (props) => {
                                                 )
                                             }
                                         </tbody>
-                                    </table>
+                                    </table> */}
                                 </div>      
-                                <Tips/>      
+                                {/* <Tips/>       */}
                             </div>
-                            <div className={classes.col3}>                            
+                            {/* <div className={classes.col3}>                            
                                 <div className={classes.card4}>
                                 
                                     <InputGroup className={classes.input}>
@@ -223,79 +225,79 @@ const  Capabilities = (props) => {
                                    
                                 </div> 
                                                        
-                            </div>
+                            </div> */}
                                                 
                         </div>                                           
                     </div> 
                 );           
-        }                   
-    }
-    else{
-        return (
-            <div className={classes.container}>                                   
-                <div className="row">
-                    <div className={classes.col1}>
-                        <div className={classes.card1}>
-                            <FileDownloader />
-                        </div>                        
-                    </div>
-                    <div className={classes.col2}>
-                        <div className={classes.card2}>
-                            <label className={classes.label}><b>Search by:</b></label>  
-                        </div>         
+    //     }                   
+    // }
+    // else{
+    //     return (
+    //         <div className={classes.container}>                                   
+    //             <div className="row">
+    //                 <div className={classes.col1}>
+    //                     <div className={classes.card1}>
+    //                         <FileDownloader />
+    //                     </div>                        
+    //                 </div>
+    //                 <div className={classes.col2}>
+    //                     <div className={classes.card2}>
+    //                         <label className={classes.label}><b>Search by:</b></label>  
+    //                     </div>         
 
-                        <div className={classes.card3}>
+    //                     <div className={classes.card3}>
                         
-                            <table className="table"  >
-                                <tbody>                                                            
-                                {
-                                    columns && columns.map((column, index) =>                                 
-                                    <tr key={index} className={classes.rowSearch} >
-                                        <td >
-                                        <div className={classes.checkBoxes}>
-                                            <input type="checkbox" 
-                                                checked={searchColumns.includes(column)} 
-                                                onChange={(e) => {
-                                                const checked = searchColumns.includes(column);
-                                                setSearchColumns((prev) => checked
-                                                ? prev.filter((src) => src !== column)
-                                                : [...prev, column]);
-                                                    }} 
+    //                         <table className="table"  >
+    //                             <tbody>                                                            
+    //                             {
+    //                                 columns && columns.map((column, index) =>                                 
+    //                                 <tr key={index} className={classes.rowSearch} >
+    //                                     <td >
+    //                                     <div className={classes.checkBoxes}>
+    //                                         <input type="checkbox" 
+    //                                             checked={searchColumns.includes(column)} 
+    //                                             onChange={(e) => {
+    //                                             const checked = searchColumns.includes(column);
+    //                                             setSearchColumns((prev) => checked
+    //                                             ? prev.filter((src) => src !== column)
+    //                                             : [...prev, column]);
+    //                                                 }} 
         
-                                            />                                                                                
-                                            {column}
-                                            </div>                                        
-                                        </td>
-                                    </tr>                                
-                                    )
-                                }                                
-                                </tbody>
-                            </table>
-                        </div>                       
-                        <Tips/> 
-                    </div>
-                    <div className={classes.col3}>
-                        <div className={classes.card4}>
-                            <InputGroup className={classes.input}>
-                                <InputGroup.Prepend className={classes.inputPrepend}>
-                                    <InputGroup.Text className={classes.span}>
-                                        <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
-                                    </InputGroup.Text>                                
-                                </InputGroup.Prepend>                   
-                                <Input
-                                    value={query}
-                                    changed={(e)=>setQuery(e.target.value)}                                                                             
-                                    elementType='input' 
-                                    elementConfig= {queryInputConfig}                                               
-                            />                            
-                            </InputGroup>
-                        </div>                        
-                    </div>
+    //                                         />                                                                                
+    //                                         {column}
+    //                                         </div>                                        
+    //                                     </td>
+    //                                 </tr>                                
+    //                                 )
+    //                             }                                
+    //                             </tbody>
+    //                         </table>
+    //                     </div>                       
+    //                     <Tips/> 
+    //                 </div>
+    //                 <div className={classes.col3}>
+    //                     <div className={classes.card4}>
+    //                         <InputGroup className={classes.input}>
+    //                             <InputGroup.Prepend className={classes.inputPrepend}>
+    //                                 <InputGroup.Text className={classes.span}>
+    //                                     <FontAwesomeIcon icon={faSearch} className={classes.icon} />                                                                        
+    //                                 </InputGroup.Text>                                
+    //                             </InputGroup.Prepend>                   
+    //                             <Input
+    //                                 value={query}
+    //                                 changed={(e)=>setQuery(e.target.value)}                                                                             
+    //                                 elementType='input' 
+    //                                 elementConfig= {queryInputConfig}                                               
+    //                         />                            
+    //                         </InputGroup>
+    //                     </div>                        
+    //                 </div>
                                     
-                </div>                                           
-            </div> 
-        );
-    }
+    //             </div>                                           
+    //         </div> 
+    //     );
+    // }
     
 };
 
